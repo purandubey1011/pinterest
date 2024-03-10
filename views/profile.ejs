@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.6.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class=" w-full h-screen">
+        <div class="flex items-center justify-between w-full h-12">
+            <img class="w-12" src="https://pngimg.com/d/pinterest_PNG62.png" alt="">
+            <a class="md:hover:bg-black md:hover:text-white md:px-3 md:py-2 md:rounded-3xl " href="/home">Home</a>
+            <a class="md:hover:bg-black md:hover:text-white md:px-3 md:py-2 md:rounded-3xl " href="/save">Save</a>
+            <a class="md:hover:bg-black md:hover:text-white md:px-3 md:py-2 md:rounded-3xl " href="/create">Create</a>
+            <i class="ri-search-line md:hidden"></i>
+            <input class="md:w-[800px] hidden md:block h-1 rounded-3xl p-5 outline-none text-lg bg-zinc-200 text-zinc-500" type="text" placeholder=" Search">
+            <i class="ri-notification-fill md:text-3xl"></i>
+            <i class="ri-message-2-fill md:text-3xl"></i>
+            <div class="w-8 h-8 rounded-full border-2 mr-2 md:mr-0 overflow-hidden">
+                <img class="w-full h-full object-cover" src="/images/profileImg/<%= foundUser.image%>" alt="">
+            </div>
+            <i class="ri-arrow-down-s-line md:text-3xl hidden md:block" ></i>
+        </div>
+        <div class="w-full min-h-screen md:pr-5 p-3">
+            <div class="relative w-full md:h-[78vh] h-[60vh] flex flex-col items-center gap-1">
+                <div class="relative md:w-1/2 md:h-[30vh] h-[20vh] w-full rounded-2xl bg-yellow-400 overflow-hidden">
+                    <img class=" w-full h-full object-cover" src="/images/poster/<%= foundUser.poster%>" alt="">
+                    <i class="ri-pencil-line pen absolute right-2 bottom-2 bg-zinc-200 px-1 rounded-full text-2xl"></i>
+                </div>
+                <form class="form-submit" action="/upload" enctype="multipart/form-data" method="post">
+                    <input class="poster-pen hidden" type="file" name="poster">
+                </form>
+                <div class="absolute top-[120px] w-[130px] h-[130px] md:w-[180px] md:h-[175px] rounded-full overflow-hidden">
+                    <img class="w-full h-full object-cover" src="/images/profileImg/<%= foundUser.image%>" alt="">
+                </div>
+                <h1 class="text-[30px] md:mt-[100px] mt-[100px]"><%=foundUser.username%></h1>
+                <p><i class="ri-pinterest-fill"></i> <%=foundUser.email%></p>
+                <p><%=foundUser.bio%></p>
+                <div class="flex gap-10">
+                    <a href="">0 Follower</a>
+                    <a href="">0 Following</a>
+                </div>
+                <div class="flex gap-14">
+                    <a href="" class="bg-zinc-400 px-5 py-3 font-bold rounded-full mt-2">Share</a>
+                    <a href="/editProfile" class="bg-zinc-400 px-5 py-3 font-bold rounded-full mt-2">Edit Profile</a>
+                </div>
+            </div>
+            <h1 class="text-center text-2xl font-bold mb-7">Create</h1>
+            <div class="w-full min-h-screen p-0 ">
+                <% foundUser.posts.reverse().forEach(function(post){ %>
+                    <div class="inline-block break-inside-avoid w-[315px] md:h-[450px] h-[280px] mb-5 rounded-2xl overflow-hidden md:ml-2">
+                        <a href="/showpost/<%= post._id %>"><img class="w-full h-full object-cover" src="../post/<%= post.pic%>" alt=""></a>
+                    </div>
+                <%})%>
+            </div>
+        </div>
+    </div>
+<% include ./partials/footer.ejs%>

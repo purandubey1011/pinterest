@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.6.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class=" w-full h-screen">
+        <div class="flex items-center justify-between w-full h-16">
+            <img class="w-12" src="https://pngimg.com/d/pinterest_PNG62.png" alt="">
+            <a class="md:hover:bg-black md:hover:text-white md:px-3 md:py-2 md:rounded-3xl " href="/home">Home</a>
+            <a class="md:hover:bg-black md:hover:text-white md:px-3 md:py-2 md:rounded-3xl " href="/save">Save</a>
+            <a class="md:hover:bg-black md:hover:text-white md:px-3 md:py-2 md:rounded-3xl " href="/create">Create</a>
+            <i class="ri-search-line md:hidden"></i>
+            <input class="md:w-[800px] hidden md:block h-1 rounded-3xl p-5 outline-none text-lg bg-zinc-200 text-zinc-500" type="text" placeholder=" Search">
+            <i class="ri-notification-fill md:text-3xl"></i>
+            <i class="ri-message-2-fill md:text-3xl"></i>
+            <a href="/profile">
+                <div class="w-8 h-8 rounded-full border-2 mr-2 md:mr-0 overflow-hidden">
+                    <img class="w-full h-full object-cover" src="/images/profileImg/<%= foundUser.image%>" alt="">
+                </div>
+            </a>
+            <i class="ri-arrow-down-s-line md:text-3xl hidden md:block" ></i>
+        </div>
+       <div class="md:flex w-full md:h-[568px] h-[720px] ">
+       <div class="md:w-1/2 md:h-full w-full h-[30%] flex items-center justify-center">
+        <img class="addImg md:w-[500px]" src="https://static.thenounproject.com/png/4322871-200.png" alt="">
+       </div>
+       <div class="md:w-1/2 md:h-full w-full h-[70%] p-10  flex items-center justify-center ">
+        <form action="/post" class="mt-[-50%] md:mt-0" method="post" enctype="multipart/form-data">
+            <input class="hidden addimage" type="file" name="pic"><br>
+            <label class="font-bold text-2xl" for="title">Title</label>
+            <input id="title" class="w-full p-2 text-lg mt-3 mb-3 rounded-md outline-none border-2" type="text" placeholder="Title" name="title" >
+            <label class="font-bold text-2xl" for="title">Description</label>
+            <input class="w-full p-2 text-lg mt-3 mb-5 rounded-md outline-none border-2" type="text" placeholder="Description" name="description"> <br>
+            <button class="px-4 py-2 rounded-3xl bg-red-500 text-white font-semibold" >Upload</button>
+        </form>
+       </div>
+       </div>
+    </div>
+
+    <script>
+            document.querySelector(".addImg").addEventListener("click",function(){
+            document.querySelector(".addimage").click();
+          })
+          document.querySelector(".addimage").addEventListener("change",()=>{
+            title.value = document.querySelector(".addimage").files[0].name
+          })
+    </script>
+</body>
+</html>

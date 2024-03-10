@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.6.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class=" w-full h-screen">
+        <div class="flex items-center justify-between w-full h-16">
+            <img class="w-12" src="https://pngimg.com/d/pinterest_PNG62.png" alt="">
+            <a class="md:hover:bg-black md:hover:text-white md:px-3 md:py-2 md:rounded-3xl " href="/home">Home</a>
+            <a class="md:hover:bg-black md:hover:text-white md:px-3 md:py-2 md:rounded-3xl " href="/save">Save</a>
+            <a class="md:hover:bg-black md:hover:text-white md:px-3 md:py-2 md:rounded-3xl " href="/create">Create</a>
+            <i class="ri-search-line md:hidden"></i>
+            <input class="md:w-[800px] hidden md:block h-1 rounded-3xl p-5 outline-none text-lg bg-zinc-200 text-zinc-500" type="text" placeholder=" Search">
+            <i class="ri-notification-fill md:text-3xl"></i>
+            <i class="ri-message-2-fill md:text-3xl"></i>
+            <a href="/profile">
+                <div class="w-8 h-8 rounded-full border-2 mr-2 md:mr-0 overflow-hidden">
+                    <img class="w-full h-full object-cover" src="/images/profileImg/<%= foundUser.image%>" alt="">
+                </div>
+            </a>
+            <i class="ri-arrow-down-s-line md:text-3xl hidden md:block" ></i>
+        </div>
+        <div class="w-full min-h-screen p-3 mt-5 ">
+            <% allposts.reverse().forEach(function(post){ %>
+            <div class="inline-block break-inside-avoid w-[320px] md:h-[450px] h-[280px] mb-5 rounded-2xl overflow-hidden md:ml-1">
+                <a href="/showpost/<%= post._id%>"><img class="w-full h-full object-cover" src="../post/<%= post.pic%>" alt=""></a>
+            </div>
+            <%})%>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.6.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class=" w-full h-screen">
+        <div class="flex items-center justify-between w-full h-12">
+            <img class="w-12" src="https://pngimg.com/d/pinterest_PNG62.png" alt="">
+            <a class="md:hover:bg-black md:hover:text-white md:px-3 md:py-2 md:rounded-3xl " href="">Home</a>
+            <a class="md:hover:bg-black md:hover:text-white md:px-3 md:py-2 md:rounded-3xl " href="">Save</a>
+            <a class="md:hover:bg-black md:hover:text-white md:px-3 md:py-2 md:rounded-3xl " href="">Create</a>
+            <i class="ri-search-line md:hidden"></i>
+            <input class="md:w-[800px] hidden md:block h-1 rounded-3xl p-5 outline-none text-lg bg-zinc-200 text-zinc-500" type="text" placeholder=" Search">
+            <i class="ri-notification-fill md:text-3xl"></i>
+            <i class="ri-message-2-fill md:text-3xl"></i>
+            <div class="w-8 h-8 rounded-full bg-black mr-2 md:mr-0"></div>
+            <i class="ri-arrow-down-s-line md:text-3xl hidden md:block" ></i>
+        </div>
+       <div class="h-[580px] w-full  flex items-center justify-center ">
+            <div class="md:w-[400px] h-[500px]  flex items-center flex-col p-5 gap-5">
+                <div class="relative w-[200px] h-[200px] bg-zinc-500 rounded-full">
+                    <i class="ri-pencil-line absolute right-8 bottom-2 bg-zinc-200 px-1 rounded-full text-2xl"></i>
+                    <img src="" alt="">
+                </div>
+                <form action="/edit">
+                    <input type="file" class="hidden">
+                    <input class="w-full p-2 text-lg mb-5 rounded-md outline-none border-2" type="text" placeholder="Usename">
+                    <input class="w-full p-2 text-lg mb-5 rounded-md outline-none border-2" type="text" placeholder="Email">
+                    <input class="w-full p-2 text-lg mb-5 rounded-md outline-none border-2" type="text" placeholder="Bio">
+                    <button class="px-4 py-2 rounded-3xl bg-blue-500 text-white font-semibold" >Update</button>
+                </form>
+            </div>
+       </div>
+    </div>
+</body>
+</html>

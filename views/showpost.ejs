@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.6.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class=" w-full h-screen">
+        <div class="flex items-center justify-between w-full h-12">
+            <img class="w-12" src="https://pngimg.com/d/pinterest_PNG62.png" alt="">
+            <a class="md:hover:bg-black md:hover:text-white md:px-3 md:py-2 md:rounded-3xl " href="/home">Home</a>
+            <a class="md:hover:bg-black md:hover:text-white md:px-3 md:py-2 md:rounded-3xl " href="/save">Save</a>
+            <a class="md:hover:bg-black md:hover:text-white md:px-3 md:py-2 md:rounded-3xl " href="/create">Create</a>
+            <i class="ri-search-line md:hidden"></i>
+            <input
+                class="md:w-[800px] hidden md:block h-1 rounded-3xl p-5 outline-none text-lg bg-zinc-200 text-zinc-500"
+                type="text" placeholder=" Search">
+            <i class="ri-notification-fill md:text-3xl"></i>
+            <i class="ri-message-2-fill md:text-3xl"></i>
+            <a href="/profile">
+                <div class="w-8 h-8 rounded-full border-2 mr-2 md:mr-0 overflow-hidden">
+                    <img class="w-full h-full object-cover" src="../images/profileImg/<%=foundUser.image%>" alt="">
+                </div>
+            </a>
+            <i class="ri-arrow-down-s-line md:text-3xl hidden md:block"></i>
+        </div>
+        <div class="w-full md:h-[580px] h-[720px] md:px-40 p-5">
+            <div class="md:flex w-full h-full rounded-2xl shadow-2xl overflow-auto">
+                <div class="md:w-1/2 md:h-full w-full h-1/2 p-2">
+                    <img class="w-full h-full rounded-2xl object-cover" src="../post/<%= post.pic%>" alt="">
+                </div>
+
+                <div class="md:w-1/2 md:h-full w-full h-1/2 ">
+                    <div class="flex items-center justify-between w-full h-11 px-4">
+                        <div class="flex md:gap-7 gap-1 md:text-2xl text-xl mb-2">
+                            <i class="ri-more-fill hover:bg-red-300 px-2 py-1 rounded-full"></i>
+                            <i class="ri-download-2-fill hover:bg-red-300 px-2 py-1 rounded-full"></i>
+                            <i class="ri-star-fill hover:bg-red-300 px-2 py-1 rounded-full"></i>
+                        </div>
+                        <div class="flex items-center md:gap-5 gap-3">
+                            <p class="md:text-2xl text-lg">
+                                <%= foundUser.username%>
+                            </p>
+                            <a href="/save/<%= post._id %>" class="md:px-4 py-1 px-2 rounded-3xl text-sm md:text-lg font-bold text-white <%= foundUser.postsaved.indexOf(post._id) == -1 ? 'bg-red-500' : 'bg-zinc-400' %>"><%= foundUser.postsaved.indexOf(post._id) == -1 ? 'save' : 'unsave' %></a>
+                        </div>
+                    </div>
+                    <div class=" w-full md:h-[400px] h-[215px] px-4 overflow-y-scroll">
+                        <div class="w-full min-h-[100%] ">
+                            <div class="flex items-center justify-between w-full mb-2">
+                                <div class="flex items-center gap-2">
+                                    <div
+                                        class="md:w-[60px] md:h-[60px] w-[50px] h-[50px] rounded-full bg-red-200 overflow-hidden">
+                                        <a href="/account?username=<%= post.userid._id%>"><img src="../images/profileImg/<%= post.userid.image%>"
+                                            alt="<%= post.userid.username%>"></a>
+                                    </div>
+                                    <div class="text-sm md:text-base">
+                                        <p>
+                                            <%= post.userid.username%>
+                                        </p>
+                                        <p><%= post.userid.follower.length%> follower</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <% if(post.userid.username != foundUser.username){%>
+                                        <a href="/follower/<%= post.userid._id %>" class="md:px-4 py-1 px-2 rounded-3xl text-sm md:text-lg font-bold text-white <%= foundUser.following.indexOf(post.userid._id) == -1 ? 'bg-blue-500' : 'bg-zinc-400' %>"><%= foundUser.following.indexOf(post.userid._id) == -1 ? 'follower' : 'unfollower' %></a>
+                                    <%}%>
+                                </div>
+                            </div>
+                            <p class="md:text-xl text-base">Comments</p>
+                            <% comments.reverse().forEach(comment => {%>
+                                <div class="caption flex gap-4 mt-2">
+                                    <div class="w-10 h-10 rounded-full overflow-hidden">
+                                        <img class="w-full h-full object-cover object-top" src="/images/profileImg/<%= comment.user.image%>" alt="">
+                                    </div>
+                                    <div>
+                                        <p class="capitalize font-semibold">
+                                            <%= comment.text %>
+                                        </p>
+                                        <h5 class="text-sm leading-none">
+                                            <%= comment.user.username %>
+                                        </h5>
+                                    </div>
+                                </div>
+                                <% })%>
+                        </div>
+                    </div>
+
+                    <div class="w-full md:h-24 h-20 px-4">
+                        <div class="flex items-center justify-between md:text-xl text-lg">
+                            <p>0 comments</p>
+                            <p class="flex items-center gap-2">
+                                <%=post.likes.length%> <a href="/like/<%= post._id %>"><i
+                                            class="ri-heart-line text-3xl"></i></a>
+                            </p>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <div class=" w-[40px] h-[40px] rounded-full bg-blue-200 overflow-hidden">
+                                    <img class="w-full h-full object-cover object-top"
+                                        src="/images/profileImg/<%= foundUser.image%>" alt="">
+                                </div>
+                                <form action="/comment/<%= post._id %>" method="post" class="flex items-center gap-2">
+                                    <input class="border-2 md:px-5 md:w-[55vh] md:text-xl text-sm px-2 rounded-md py-1"
+                                        type="text" placeholder="Add a comment" name="text">
+                                    <input type="submit" value='comment'
+                                        class="bg-blue-500 text-sm px-2 py-2 font-semibold text-white rounded">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
